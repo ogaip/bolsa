@@ -1,0 +1,9 @@
+<!-- user_profile.html -->
+{% extends "layout/dashboard.html" %}
+{% block content %}
+<h1>Perfil de Usuario</h1>
+<p>Nombre de Usuario: {{ user.username }}</p>
+<p>Correo Electrónico: {{ user.email }}</p>
+<!-- Aquí puedes agregar más campos y formularios necesarios para mostrar y editar la información del usuario -->
+
+{% endblock %}

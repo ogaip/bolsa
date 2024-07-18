@@ -1,0 +1,31 @@
+{% extends "layout/dashboard.html" %} {% block content %}
+<div class="table-responsive-sm">
+	<table class="table table-secondary">
+		<thead>
+			<tr>
+				<th>Nombre de la Oferta</th>
+				<th>Fecha de la publicacionN</th>
+				<th>Fecha limite</th>
+				<th>Estado</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="">
+				{% for oferta in ofertas %}
+				<td>{{oferta.titulo}}</td>
+				<td>{{oferta.fecha_creacion}}</td>
+				<td>{{oferta.fecha_limite_postulacion}}</td>
+				<td>{{oferta.estado }}</td>
+				<td>
+					<a class="btn btn-info btn-sm" href="{% url 'ver' oferta.id %}">Ver Detalle</a>
+					<a class="btn btn-warning btn-sm" href="{% url 'editar' oferta.id %}">Editar</a>
+					<a class="btn btn-danger btn-sm" href="{% url 'eliminar' oferta.id %}">Eliminar</a>
+				</td>
+				{% endfor %}
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+{% endblock %}

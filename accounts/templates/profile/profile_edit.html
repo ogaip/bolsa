@@ -1,0 +1,55 @@
+{% extends "layout/dashboard.html" %}
+{% block content %}
+<div class="card">
+<form action="" method=POST>
+  {% csrf_token %}
+  {{form.errors}}
+  {{form}}
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <button class="btn btn-primary" type="submit">Actualizar Perfil</button>
+      <a class="btn btn-danger" href="{% url "perfil" %}">Cancelar</a>
+    </div>
+  </div>
+</form>
+  {% comment %} <div class="card-body">
+    <h5 class="card-title">{{nickname}}</h5> <small>desde: {{form.date_joined}}
+      {{form.date_joined.errors}}
+    </small>
+    <p class="card-text">
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="row mt-3">
+          <div class="col-md-8">
+            <label for="username" class="form-label">Nickname</label>
+            {{ form.username }}
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-4">
+            <label for="email" class="form-label">Email</label>
+            {{ form.email }}
+          </div>
+          <div class="col-md-4">
+            <label for="first_name" class="form-label">Nombre</label>
+            {{ form.first_name }}
+          </div>
+          <div class="col-md-4">
+            <label for="last_name" class="form-label">Apellido</label>
+            {{ form.last_name }}
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <button class="btn btn-primary" type="submit">Actualizar Perfil</button>
+            <a class="btn btn-danger" href="{% url "perfil" %}">Cancelar</a>
+          </div>
+        </div>
+      </form>
+    </p>
+
+  </div> {% endcomment %}
+</div>
+
+
+{% endblock %}
