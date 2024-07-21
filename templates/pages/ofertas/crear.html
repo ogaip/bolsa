@@ -1,74 +1,68 @@
-{% extends "layout/dashboard.html" %}
+{% extends 'layout/dashboard.html' %}
 
 {% block content %}
-
-{% comment %} <div class="card">
+  <div class="card">
     <div class="card-body">
-        <form action="{% url "crear" %}" method="post">
-            {% csrf_token %}  <!-- se agrega para manejar el token CSRF -->
-            {{errors}}
-            <div class="row">
-                <div class="form-label">
-                    <label for="titulo">Titulo de la Oferta Laboral:</label>
-                    {{ form.titulo }}
-                    {{ form.titulo.errors }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-label">
-                    <label for="descripcion">Descripción:</label>
-                    {{ form.descripcion }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-label">
-                    <label for="habilidades_requeridas">Habilidades Requeridas para el puesto:</label>
-                    {{ form.habilidades_requeridas }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-label">
-                    <label for="salario_minimo">Requisitos Laborales:</label>
-                    {{ form.requisitos_laborales }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-label">
-                    <label for="beneficios">Beneficios:</label>
-                    {{ form.beneficios }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-label">
-                    <label for="fecha_limte">Fecha Limite para la Postulacion:</label>
-                    {{ form.fecha_limite_postulacion}}
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-label">
-                    <label for="estado">Estado:</label>
-                    {{ form.estado }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-label">
-                    <label class="form-label" for="empleador">Empleador: </label>
-                    {{ form.empleador }}
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="btn-group" role="group" aria-label="...">
-                    <button type="submit" class="btn btn-success">Crear</button>  <!-- botón para enviar el formulario -->
+      <form action="{% url 'crear' %}" method="post">
+        {% csrf_token %} <!-- se agrega para manejar el token CSRF -->
+        {{ error }}
+        <div class="row">
+          <div class="form-label col-8">
+            <label for="titulo">Titulo de la Oferta Laboral:</label>
+            {{ form.titulo }}
+            {{ form.titulo.errors }}
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="form-floating">
+            <label for="descripcion">Descripción:</label>
+            {{ form.descripcion }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-label">
+            <label for="habilidades_requeridas">Habilidades Requeridas para el puesto:</label>
+            {{ form.habilidades_requeridas }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-label">
+            <label for="salario_minimo">Requisitos Laborales:</label>
+            {{ form.requisitos_laborales }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-label">
+            <label for="beneficios">Beneficios:</label>
+            {{ form.beneficios }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-label">
+            <label for="fecha_limte">Fecha Limite para la Postulacion:</label>
+            {{ form.fecha_limite_postulacion }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-label">
+            <label for="estado">Estado:</label>
+            {{ form.estado }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-label">
+            <label class="form-label" for="empleador">Empleador:</label>
+            {{ form.empleador }}
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="btn-group" role="group" aria-label="...">
+            <button type="submit" class="btn btn-success">Crear</button> <!-- botón para enviar el formulario -->
 
-                    <a href="{% url 'listar' %}" class="btn btn-secondary">Cancelar</a> <!-- botón para volver al listado de ofertas laborales -->
-
-                </div>
-
-            </div>
-
-
-        </form>
+            <a href="{% url 'listar' %}" class="btn btn-secondary">Cancelar</a> <!-- botón para volver al listado de ofertas laborales -->
+          </div>
+        </div>
+      </form>
     </div>
-</div> {% endcomment %}
-
+  </div>
 {% endblock %}

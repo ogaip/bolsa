@@ -14,7 +14,8 @@ def inicio(request):
 
 def listar(request):
     nick = request.user
-    ofertas = OfertaLaboral.objects.filter(empleador=nick)
+    ofertas = OfertaLaboral.objects.all()
+    print(ofertas)
     title = "Listado de Ofertas Laborales"
 
     return render(
@@ -36,14 +37,16 @@ def crear(request):
                 request,
                 "ofertas/crear.html",
                 {
-                    "title": "Publicar nueva Oferta Laboral",
+                    "title": "Publicar nueva Oferta Laboral - error",
                     "form": form,
-                },
-            )
+                    "error": form.errors,
+                    "nickname": request.user
+                })
+
     else:
         nick = request.user
         title = "Publicar nueva Oferta Laboral"
-        form = OfertaLaboralForm(request.POST or None)
+        form = OfertaLaboralForm()
 
         return render(
             request,
@@ -62,7 +65,7 @@ def editar(request, id):
     if request.method == "POST":
         form = OfertaLaboralForm(request.POST, instance=oferta)
         if form.is_valid():
-            print (form)
+            print(form)
             form.save()
             return redirect("/ofertas/listarOfertas")
         else:
@@ -106,5 +109,6 @@ def eliminar(request, id):
     oferta = OfertaLaboral.objects.get(id=id)
     oferta.delete()
     return redirect(
-        "ofertas/listar", {"nickname": nick, "title": "Oferta Laboral Eliminada"}
+        "ofertas/listar", {"nickname": nick,
+                           "title": "Oferta Laboral Eliminada"}
     )

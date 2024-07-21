@@ -2,7 +2,7 @@
 
 from django import forms
 from oferta_laboral.models import ESTADO_CHOICES, OfertaLaboral
-from django_prose_editor.fields import ProseEditorFormField, ProseEditorField, ProseEditorWidget
+from tinymce.widgets import TinyMCE
 
 
 # Create your forms here.
@@ -24,24 +24,22 @@ class OfertaLaboralForm(forms.ModelForm):
         ]
 
         widgets = {
-            "titulo": forms.TextInput(attrs={ "class": "form-control"}),
-            # "descripcion": forms.Textarea(attrs={"class": "form-control"}),
-            "descripcion": ProseEditorField(),
-            # "habilidades_requeridas": forms.Textarea(attrs={"class": "form-control"}),
-            "habilidades_requeridas": ProseEditorFormField(),
-            "requisitos_laborales": forms.Textarea(attrs={"class": "form-control"}),
-            # "beneficios": forms.Textarea(attrs={"class": "form-control"}),
-            "beneficios": ProseEditorWidget(attrs={"class": "form-control"}),
+            "titulo": forms.TextInput(attrs={"class": "form-control"}),
+            # "descripcion": (attrs={"class": "form-control"}),
+            "descripcion": TinyMCE(attrs={"class": "form-control", "type": "textArea"}),
+            # "habilidades_requeridas": (attrs={"class": "form-control"}),
+            "habilidades_requeridas": TinyMCE(),
+            "requisitos_laborales": TinyMCE(attrs={"class": "form-control"}),
+            # "beneficios": (attrs={"class": "form-control"}),
+            "beneficios": TinyMCE(attrs={"class": "form-control"}),
             "fecha_limite_postulacion": forms.DateInput(attrs={"class": "form-control", "type": "date"}),
             "estado": forms.Select(choices=ESTADO_CHOICES),
-            "empleado": forms.Select(attrs={"class": "form-control", "disabled" : "disabled"})
+            "empleado": forms.Select(attrs={"class": "form-control", "disabled": "disabled"})
             # Añadir el empleador aqui
         }
 
-
-
         errors = {
-            "titulo": { "required": "Este campo es obligatorio"},
+            "titulo": {"required": "Este campo es obligatorio"},
             "descripcion": {"required": "Este campo es obligatorio"},
             "habilidades_requeridas": {"required": "Este campo es obligatorio"},
             "requisitos_laborales": {"required": "Este campo es obligatorio"},
