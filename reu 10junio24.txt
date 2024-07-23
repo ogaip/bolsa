@@ -1,0 +1,84 @@
+Freemium:
+2 publicaciones por mes...
+Planes
+	- precios
+	- oferta
+	- cambiar automaticamente a plan freemium o costo sin promocion
+
+Ofertas laborales
+	- crear oferta laboral
+	- editar oferta laboral
+
+
+Avatar
+	- Configuracion
+	- Cambiar Contraseña
+	- logout
+
+Upgrade Premium
+
+
+Buscar:
+PErfil en redes Sociales
+marketing 
+
+Li3star Oferta laboral:
+
+	titulo.
+	fecha de publicacion.
+	
+	
+-------------------------------------------------------------------------
+
+premiun	
+	publicaciones
+	subir imagen
+	mostrar postulaciones
+	visualizaciones
+	estado 
+		Finalzado
+		Activa
+ 		Inactivo
+
+
+Bot
+	investigar logeo remoto
+	Apis.
+
+
+Campos paa publicacion
+Nombre del cargo:
+Ciudad: select
+profesion: 
+fromacion academica;
+formacion academica complementaria
+Experiencia requerida
+Uso especifico de Herramientas: 
+	varias entradas.
+Idiomas: 
+	varias entradas.
+
+Tareas a realizar
+	varias entradas
+
+rango salarial
+	moneda select 
+	desde hasta -numerico
+	salario minuni - checked
+
+Disponibilidad horaria: select
+ 	mid time 
+	Full time
+	rotativo
+	especificar
+
+Dias
+
+zona preferencial
+
+Beneficios 
+
+Contacto
+
+capo aberto
+		

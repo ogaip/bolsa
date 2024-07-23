@@ -58,7 +58,7 @@ def login_view(request):
                 username=form.cleaned_data["username"], password=form.cleaned_data["password"])
             if user is not None:
                 login(request, user)
-                return redirect("ofertas/inicio")
+                return redirect("perfil")
             else:
                 return render(request, "registration/login.html", {"form": form, "error": "Usuario o contraseña incorrecta"})
         else:

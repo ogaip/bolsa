@@ -19,10 +19,21 @@ class OfertaLaboral(models.Model):
     beneficios = HTMLField()
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now=True)
-    fecha_limite_postulacion = models.DateField()
+    fecha_limite_postulacion = models.DateField(blank=False, null=False)
     estado = models.CharField(
-        max_length=20, choices=ESTADO_CHOICES, default="Publicada")
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+        choices=ESTADO_CHOICES,
+        default="Publicada"
+    )
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE,
+        null=False,
+        blank=False
+    )
+
+    class Meta:
+        verbose_name = "Oferta Laboral"
+        verbose_name_plural = "Ofertas Laborales"
+        db_table = "OfertasLaborales"
 
     def __str__(self):
         return self.titulo

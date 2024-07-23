@@ -19,7 +19,7 @@ class OfertaLaboralForm(forms.ModelForm):
             "beneficios",
             "fecha_limite_postulacion",
             "estado",
-            "empleador",
+            "user",
             # Añadir el empleador aqui
         ]
 
@@ -34,7 +34,7 @@ class OfertaLaboralForm(forms.ModelForm):
             "beneficios": TinyMCE(attrs={"class": "form-control"}),
             "fecha_limite_postulacion": forms.DateInput(attrs={"class": "form-control", "type": "date"}),
             "estado": forms.Select(choices=ESTADO_CHOICES),
-            "empleado": forms.Select(attrs={"class": "form-control", "disabled": "disabled"})
+            "user": forms.Select(attrs={"class": "form-control", "disabled": "disabled"})
             # Añadir el empleador aqui
         }
 
@@ -46,6 +46,6 @@ class OfertaLaboralForm(forms.ModelForm):
             "beneficios": {"required": "Este campo es obligatorio"},
             "fecha_limite_postulacion": {"required": "Este campo es obligatorio"},
             "estado": {"required": "Este campo es obligatorio"},
-            "empleador": {"required": "Este campo es obligatorio"},
+            "user": {"required": "Este campo es obligatorio"},
             # Añadir el empleador aqui
         }
