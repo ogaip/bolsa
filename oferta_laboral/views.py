@@ -9,13 +9,16 @@ from accounts.models import Perfil
 
 def inicio(request):
     nick = request.user
+    print(nick)
     perfil = Perfil.objects.filter(user__username = nick).values()
-    print(perfil)
+    userdata = User.objects.filter(username= nick).values()
+    print(userdata)
     title = "Bienvenido"
     return render(request, "ofertas/inicio.html", {
         "title": title, 
         "nickname": nick,
-        "perfil": perfil,        
+        "userdata": userdata,
+        "perfil": perfil,
         })
 
 

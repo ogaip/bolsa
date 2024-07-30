@@ -88,10 +88,15 @@
           </ul>
         </li>
         <li class="nav-item">
+          {% if user.is_authenticated %}
           <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
             <button class="btn btn-close btn-danger" type="submit">Logout</button>
           </form>
+          
+          {% else %}
+          <a class="btn btn-success text-white" href="{% url 'login' %}">Inicia Session</a>
+          {% endif %}
         </li>
         {% comment %}
         <li>

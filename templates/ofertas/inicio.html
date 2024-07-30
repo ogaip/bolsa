@@ -3,14 +3,14 @@
 {% block content %}
   <h1>Hola, {{ nickname }}!!</h1>
 
-  {% if perfil.user == nickname %}
+  {% if user.is_authenticated %}
     <form method="post" action="{% url 'logout' %}">
       {% csrf_token %}
       <button class="btn btn-close btn-danger" type="submit">Logout</button>
     </form>
   {% else %}
     <a href="{% url 'login' %}">Inicia Session</a>
-    <br>
+    <br />
     <a href="{% url 'register' %}">Registrate</a>
   {% endif %}
 {% endblock %}
