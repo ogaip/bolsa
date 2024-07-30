@@ -2,19 +2,26 @@ from django.shortcuts import get_object_or_404, render, redirect
 from oferta_laboral.forms import OfertaLaboralForm
 from .models import OfertaLaboral
 from .models import User
+from accounts.models import Perfil
 
 # Create your views here.
 
 
 def inicio(request):
     nick = request.user
-    print(nick)
+    perfil = Perfil.objects.filter(user__username = nick).values()
+    print(perfil)
     title = "Bienvenido"
-    return render(request, "ofertas/inicio.html", {"title": title, "nickname": nick})
+    return render(request, "ofertas/inicio.html", {
+        "title": title, 
+        "nickname": nick,
+        "perfil": perfil,        
+        })
 
 
 def listar(request):
     nick = request.user
+    perfil = Perfil.objects.filter(user__username = nick).values()
     ofertas = OfertaLaboral.objects.all()
     print(ofertas)
     title = "Listado de Ofertas Laborales"
@@ -22,8 +29,14 @@ def listar(request):
     return render(
         request,
         "ofertas/listar.html",
-        {"title": title, "nickname": nick, "ofertas": ofertas},
-    )
+        {
+            "title": title,
+            "nickname": nick,
+            "ofertas": ofertas,
+            "perfil": perfil,
+            })
+
+
 
 
 def crear(request):

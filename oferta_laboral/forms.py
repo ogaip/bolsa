@@ -19,7 +19,7 @@ class OfertaLaboralForm(forms.ModelForm):
             "beneficios",
             "fecha_limite_postulacion",
             "estado",
-            "user",
+            # "user",
             # Añadir el empleador aqui
         ]
 

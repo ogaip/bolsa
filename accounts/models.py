@@ -35,9 +35,6 @@ class Perfil(models.Model):
     habilidades_experiencia = models.TextField(max_length=500, blank=True)
     habilidades_conocimientos = models.TextField(max_length=500, blank=True)
     habilidades_conocimientos_adicionales = models.TextField(max_length=500, blank=True)
-
-    
-
     avatar = models.ImageField(upload_to='avatar/', blank=True)
     skills = models.ManyToManyField('Skill', related_name='perfiles')
 

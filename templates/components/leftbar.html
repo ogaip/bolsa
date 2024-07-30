@@ -1,9 +1,9 @@
 {% load static %}
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="../../index3.html" class="brand-link">
+  <a href="{% url 'inicio' %}" class="brand-link">
     <img src="{% static 'assets/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8" />
-    <span class="brand-text font-weight-light"><b> B01$4 </b></span>
+    <span class="brand-text font-weight-light"><b>B01$4</b></span>
   </a>
 
   <!-- Sidebar -->
@@ -11,7 +11,7 @@
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="{% static 'assets/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image" />
+        <img src="{{ MEDIA_URL }}{{ perfil.get.avatar }}" class="img-circle elevation-2" alt="User Image" />
       </div>
       <div class="info">
         <a href="#" class="d-block">{{ nickname }}</a>
@@ -48,7 +48,7 @@
               Ofertas Laborales<i class="right fas fa-angle-left"></i>
             </p>
           </a>
-          <ul class="nav nav-item">
+          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{% url 'listar' %}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -63,7 +63,6 @@
             </li>
           </ul>
         </li>
-
         <li class="nav-item menu-close">
           <a href="" class="nav-link">
             <i class="nav-icon fas fa-screwdriver"></i>
@@ -86,7 +85,17 @@
                 <p>Editar Perfil</p>
               </a>
             </li>
-            {% comment %}
+          </ul>
+        </li>
+        <li class="nav-item">
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button class="btn btn-close btn-danger" type="submit">Logout</button>
+          </form>
+        </li>
+        {% comment %}
+        <li>
+          <ul>
             <li class="nav-item">
               <a href="../layout/top-nav-sidebar.html" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
