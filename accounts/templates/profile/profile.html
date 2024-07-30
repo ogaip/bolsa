@@ -3,7 +3,6 @@
 {% block content %}
   <!-- Content Header (Page header) -->
 
-
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
@@ -12,20 +11,15 @@
           <!-- Profile Image -->
           <div class="card card-primary card-outline">
             <div class="card-body box-profile">
-              <div class="text-center">
-                <img class="profile-user-img img-fluid img-circle" src="{% static 'assets/img/user2-128x128.jpg' %} " alt="User profile picture" />
-              </div>
-              
-              {% for per in profile %}
-               
-              <h3 class="profile-username text-center">{{ per.username}}</h3>
+              {% for u in userdata %}
+                <div class="text-center">
+                  <img class="profile-user-img img-fluid img-circle" src="{{ MEDIA_URL }}{{ perfil.get.avatar }}" alt="User profile picture" />
+                </div>
+                <h3 class="profile-username text-center">{{ u.username }}</h3>
 
-              <p class="text-muted text-center">{{per.first_name}} {{per.last_name}}</p>
-
-          
-                
+                <p class="text-muted text-center">{{ u.first_name }} {{ u.last_name }}</p>
               {% endfor %}
-              <ul class="list-group list-group-unbordered mb-3">
+              {% comment %} <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item">
                   <b>Followers</b> <a class="float-right">1,322</a>
                 </li>
@@ -35,9 +29,13 @@
                 <li class="list-group-item">
                   <b>Friends</b> <a class="float-right">13,287</a>
                 </li>
-              </ul>
+              </ul> {% endcomment %}
 
-              <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+              {% if u.username == request.username %}
+
+              {% else %}
+                <a href="" class="btn btn-primary btn-block"><b>Seguir</b></a>
+              {% endif %}
             </div>
             <!-- /.card-body -->
           </div>
@@ -46,38 +44,46 @@
           <!-- About Me Box -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">About Me</h3>
+              <h3 class="card-title"><b>Mi Inifo</b></h3>
             </div>
             <!-- /.card-header -->
-            <div class="card-body">
-              <strong><i class="fas fa-book mr-1"></i> Education</strong>
 
-              <p class="text-muted">B.S. in Computer Science from the University of Tennessee at Knoxville</p>
+            {% for p in perfil %}
+              <div class="card-body">
+                <strong><i class="fas fa-book mr-1"></i> Education</strong>
 
-              <hr />
+                <p class="text-muted">{{ p.educacion }}</p>
 
-              <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+                <hr />
 
-              <p class="text-muted">Malibu, California</p>
+                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
 
-              <hr />
+                <p class="text-muted">{{ p.ciudad }}</p>
 
-              <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+                <hr />
 
-              <p class="text-muted">
-                <span class="tag tag-danger">UI Design</span>
-                <span class="tag tag-success">Coding</span>
-                <span class="tag tag-info">Javascript</span>
-                <span class="tag tag-warning">PHP</span>
-                <span class="tag tag-primary">Node.js</span>
-              </p>
+                <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
 
-              <hr />
+                {% for sk in skill %}
+                  <li>{{ sk.nombre }}</li>
+                {% endfor %}
 
-              <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+                <hr />
 
-              <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
-            </div>
+                <strong><i class="far fa-file-alt mr-1"></i> Biografía</strong>
+
+                <p class="text-muted">{{ p.biografia }}</p>
+
+                <hr />
+
+                <a href="{{ p.linkedin }}"><i class="fab fa-linkedin fa-lg"></i></a>
+                <a href="{{ p.github }}"><i class="fab fa-github fa-lg"></i></a>
+                <a href="{{ p.twitter }}"><i class="fab fa-twitter fa-lg"></i></a>
+                <a href="{{ p.instagram }}"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="{{ p.facebook }}"><i class="fab fa-facebook fa-lg"></i></a>
+              </div>
+            {% endfor %}
+
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
@@ -88,7 +94,7 @@
             <div class="card-header p-2">
               <ul class="nav nav-pills">
                 <li class="nav-item">
-                  <a class="nav-link active" href="#activity" data-toggle="tab">Activity</a>
+                  <a class="nav-link active" href="#activity" data-toggle="tab">Mis Datos</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a>
@@ -103,95 +109,93 @@
               <div class="tab-content">
                 <div class="active tab-pane" id="activity">
                   <!-- Post -->
-                  <div class="post">
-                    <div class="user-block">
-                      <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image" />
-                      <span class="username">
-                        <a href="#">Jonathan Burke Jr.</a>
+
+                  {% for u in userdata %}
+                    <div class="post">
+                      <div class="user-block">
+                        <span class="username">{{ u.first_name }} {{ u.last_name }} ~ {{ u.username }}</span>
+
+                        {% if u.is_superuser == True %}
+                          <b class="username text-primary">Admin</b>
+                        {% else %}
+                          <b class="username text-success">Usuario</b>
+                        {% endif %}
+
                         <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                      </span>
-                      <span class="description">Shared publicly - 7:30 PM today</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>Lorem ipsum represents a long-held tradition for designers, typographers and the like. Some people hate it and argue for its demise, but others ignore the hate as they create awesome tools to help create filler text for everyone from bacon lovers to Charlie Sheen fans.</p>
 
-                    <p>
-                      <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                      <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                      <span class="float-right"><a href="#" class="link-black text-sm"><i class="far fa-comments mr-1"></i> Comments (5)</a></span>
-                    </p>
-
-                    <input class="form-control form-control-sm" type="text" placeholder="Type a comment" />
-                  </div>
-                  <!-- /.post -->
-
-                  <!-- Post -->
-                  <div class="post clearfix">
-                    <div class="user-block">
-                      <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image" />
-                      <span class="username">
-                        <a href="#">Sarah Ross</a>
-                        <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                      </span>
-                      <span class="description">Sent you a message - 3 days ago</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>Lorem ipsum represents a long-held tradition for designers, typographers and the like. Some people hate it and argue for its demise, but others ignore the hate as they create awesome tools to help create filler text for everyone from bacon lovers to Charlie Sheen fans.</p>
-
-                    <form class="form-horizontal">
-                      <div class="input-group input-group-sm mb-0">
-                        <input class="form-control form-control-sm" placeholder="Response" />
-                        <div class="input-group-append">
-                          <button type="submit" class="btn btn-danger">Send</button>
-                        </div>
+                        <span class="description">{{ u.last_login }}</span>
+                        <hr />
                       </div>
-                    </form>
-                  </div>
-                  <!-- /.post -->
-
-                  <!-- Post -->
-                  <div class="post">
-                    <div class="user-block">
-                      <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image" />
-                      <span class="username">
-                        <a href="#">Adam Jones</a>
-                        <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                      </span>
-                      <span class="description">Posted 5 photos - 5 days ago</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <div class="row mb-3">
-                      <div class="col-sm-6">
-                        <img class="img-fluid" src="../../dist/img/photo1.png" alt="Photo" />
-                      </div>
-                      <!-- /.col -->
-                      <div class="col-sm-6">
+                      {% for p in perfil %}
+                      <!-- /.user-block -->
                         <div class="row">
-                          <div class="col-sm-6">
-                            <img class="img-fluid mb-3" src="../../dist/img/photo2.png" alt="Photo" />
-                            <img class="img-fluid" src="../../dist/img/photo3.jpg" alt="Photo" />
+                          <div class="col-6">
+                            <p class="username">
+                              <a href="mailto:{{ u.email }}"><i class="far fa-paper-plane"></i> {{ u.email }}</a>
+                            </p>
+      
+                              <p>
+                                <i class="fas fa-mobile-alt"></i> {{ p.telefono }}
+                              </p>
+                              <p>
+                                <i class="fas fa-birthday-cake"></i> {{ p.fecha_nacimiento }}
+                              </p>
+                              <p>
+                                <i class="fas fa-map-marker-alt"></i> {{ p.pais }} - {{ p.ciudad }}
+                              </p>
                           </div>
-                          <!-- /.col -->
-                          <div class="col-sm-6">
-                            <img class="img-fluid mb-3" src="../../dist/img/photo4.jpg" alt="Photo" />
-                            <img class="img-fluid" src="../../dist/img/photo1.png" alt="Photo" />
+                          
+                          <div class="col-6">
+                            <p><b>Descripcion Personal: </b>
+                              <br>
+                              {{ p.descripcion_personal }}
+                            </p>
                           </div>
-                          <!-- /.col -->
                         </div>
-                        <!-- /.row -->
-                      </div>
-                      <!-- /.col -->
+                        <hr>
+                        <div class="row">
+                          <div class="col-12">
+                            <p><i class="fas fa-network-wired"></i> <b>Puesto Actual: </b> {{ p.puesto_actual }}</p>
+                            <p><b>Ultimo Puesto: </b>{{ p.ultimo_puesto }}</p>
+    
+                            <p><i class="fas fa-layer-group"></i> <b>Experiencia Laboral: </b>{{ p.experiencia_laboral }}</p>
+                            <p><i class="fas fa-angle-double-down"></i> <b>Experiencia Adicionales: </b>{{ p.habilidades_adicionales }}</p>
+                            <p><i class="fas fa-user-graduate"></i> <b>Educacion: </b>{{ p.educacion }}</p>
+                            <p><i class="fas fa-asterisk"></i> <b>Referencias Laborales: </b>{{ p.referencias }}</p>
+                            <p><i class="fas fa-certificate"></i> <b>Certificaciones: </b>{{ p.certificaciones }}</p>
+                            <p><i class="fas fa-heart"></i> <b>Intereses: </b>{{ p.intereses }}</p>
+                            <p><i class="fas fa-brain"></i> <b>Habilidades Adicionales: </b></p>
+                            <div class="list-group">
+                              <ul>
+
+                                <li>
+                                  {{ p.habilidades_experiencia }}
+                                </li>
+                                <li>
+                                  {{ p.habilidades_conocimientos }}                        
+                                </li>
+                                <li>
+                                  {{ p.habilidades_conocimientos_adicionales }}
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+    
+                          
+                          {% endfor %}
+                          {% endfor %}
+                          
+                      
+
+                      <p>
+                        <a href="{% url 'editar_perfil' %}" class="btn btn-warning"><i class="fas fa-edit"></i> Editar</a>
+                        <a href="#" class="btn btn-light"><i class="far fa-thumbs-up mr-1"></i> Like</a>
+                        <span class="float-right"><a href="#" class="btn btn-block"><i class="far fa-comments mr-1"></i> Comentarios</a></span>
+                      </p>
+
+                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment" />
                     </div>
-                    <!-- /.row -->
-
-                    <p>
-                      <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                      <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                      <span class="float-right"><a href="#" class="link-black text-sm"><i class="far fa-comments mr-1"></i> Comments (5)</a></span>
-                    </p>
-
-                    <input class="form-control form-control-sm" type="text" placeholder="Type a comment" />
-                  </div>
                   <!-- /.post -->
                 </div>
                 <!-- /.tab-pane -->

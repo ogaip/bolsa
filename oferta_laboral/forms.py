@@ -34,7 +34,7 @@ class OfertaLaboralForm(forms.ModelForm):
             "beneficios": TinyMCE(attrs={"class": "form-control"}),
             "fecha_limite_postulacion": forms.DateInput(attrs={"class": "form-control", "type": "date"}),
             "estado": forms.Select(choices=ESTADO_CHOICES),
-            "user": forms.Select(attrs={"class": "form-control", "disabled": "disabled"})
+            "user": forms.TextInput(attrs={"class": "form-control", 'hidden': ' True'}),
             # Añadir el empleador aqui
         }
 

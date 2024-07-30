@@ -32,7 +32,7 @@ def crear(request):
         if form.is_valid():
             form.save()
 
-            return redirect("/ofertas/listarOfertas")
+            return redirect("/ofertas/listar.html")
         else:
             return render(
                 request,
@@ -61,14 +61,14 @@ def crear(request):
 
 
 def editar(request, id):
+    print (request.POST)
     nick = request.user
     oferta = get_object_or_404(OfertaLaboral, id=id)
     if request.method == "POST":
         form = OfertaLaboralForm(request.POST, instance=oferta)
         if form.is_valid():
-            print(form)
             form.save()
-            return redirect("/ofertas/listarOfertas")
+            return redirect("listar")
         else:
             return render(
                 request,

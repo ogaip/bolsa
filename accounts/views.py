@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-
+from .models import Perfil, Skill
 
 def registro(request):
     """esta funcion es para registrar un usuario nuevo
@@ -94,12 +94,19 @@ def ver_perfil(request):
     """
     user = request.user
     title = "Perfil de "
-    profile= User.objects.filter(username=user).values()
-    print (profile)
+    perfil= Perfil.objects.filter(user__username=user).values()
+    userdata= User.objects.filter(username=user).values()
+    skill = Skill.objects.filter(usuario__id= user.id).values()
+    
+    print (perfil, userdata, skill)
     return render(request, "profile/profile.html", {
         "nickname": user.username,
         "title": title + user.username,
-        "profile": profile,
+        "userdata": userdata,
+        "perfil": perfil,
+        "skill": skill,
+        
+
     })
 
 

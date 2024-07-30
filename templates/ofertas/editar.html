@@ -10,9 +10,14 @@
             <div class="row">
                 <form action="" method="post">
                     {% csrf_token %}
+                    {{from.errors}}
                     {{form.as_p}}
+                    
+                    
+                        
+                    
                     <button class="btn btn-primary" type="submit">Actualizar</button>
-                    <a class="btn btn-danger" href="{% url "listar" %}">Canelar</a>
+                    <a class="btn btn-danger" href="{% url 'listar' %}">Canelar</a>
                 </form>
             </div>
         </div>
