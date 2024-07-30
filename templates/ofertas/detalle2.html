@@ -1,0 +1,30 @@
+{% extends "layout/dashboard.html" %}
+
+{% block content %}
+
+
+
+{% for of in oferta %}
+    
+    {{of.titulo}}
+    <br>
+    {{of.descripcion}}
+    <br>
+    {{of.habilidades_requeridas}}
+    <br>
+    {{of.requisitos_laborales}}
+    <br>
+    {{of.beneficios}}
+    <br>
+    {{of.fecha_limite_postulacion}}
+    <br>
+    {{nickname}}
+
+
+{% endfor %}
+    
+
+
+    
+
+{% endblock %}

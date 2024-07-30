@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
 def registro(request):
@@ -92,8 +93,13 @@ def ver_perfil(request):
         render: renderiza la vista
     """
     user = request.user
+    title = "Perfil de "
+    profile= User.objects.filter(username=user).values()
+    print (profile)
     return render(request, "profile/profile.html", {
-        "nickname": user.id,
+        "nickname": user.username,
+        "title": title + user.username,
+        "profile": profile,
     })
 
 

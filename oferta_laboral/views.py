@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from oferta_laboral.forms import OfertaLaboralForm
 from .models import OfertaLaboral
+from .models import User
 
 # Create your views here.
 
@@ -93,14 +94,18 @@ def editar(request, id):
 
 
 def ver(request, id):
-    nick = request.user
-    oferta = OfertaLaboral.objects.get(id=id)
-    title = f"Ver Oferta Laboral: {oferta.titulo}"
-
+    oferta = OfertaLaboral.objects.filter(id=id)
+    print (oferta.values())
+    nick = User.objects.get(id=id)
+    
+    title = "Oferta Laboral"
     return render(
         request,
         "ofertas/detalle.html",
-        {"title": title, "nickname": nick, "oferta": oferta},
+        {
+            "title": title, 
+            "nickname": nick, 
+            "oferta": oferta},
     )
 
 
