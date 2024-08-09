@@ -7,23 +7,26 @@
 				<th>Fecha de la publicacionN</th>
 				<th>Fecha limite</th>
 				<th>Estado</th>
+				<th>Vistas</th>
 				<th></th>
 			</tr>
 		</thead>
+		<tr class="">
 		<tbody>
-			<tr class="">
+			{{vista}}
 				{% for oferta in ofertas %}
 				<td>{{oferta.titulo}}</td>
 				<td>{{oferta.fecha_creacion}}</td>
 				<td>{{oferta.fecha_limite_postulacion}}</td>
 				<td>{{oferta.estado }}</td>
+				<td>{{vista}}</td>	
 				<td>
 					<a class="btn btn-info btn-sm" href="{% url 'ver' oferta.id %}">Ver Detalle</a>
 					<a class="btn btn-warning btn-sm" href="{% url 'editar' oferta.id %}">Editar</a>
 					<a class="btn btn-danger btn-sm" href="{% url 'eliminar' oferta.id %}">Eliminar</a>
 				</td>
-				{% endfor %}
 			</tr>
+			{% endfor %}
 		</tbody>
 	</table>
 </div>

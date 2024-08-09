@@ -98,7 +98,7 @@ def ver_perfil(request):
     userdata= User.objects.filter(username=user).values()
     skill = Skill.objects.filter(usuario__id= user.id).values()
     
-    print (perfil, userdata, skill)
+    
     return render(request, "profile/profile.html", {
         "nickname": user.username,
         "title": title + user.username,

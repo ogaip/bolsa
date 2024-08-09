@@ -1,5 +1,5 @@
 """
-URL configuration for bolsa project.
+URL configuration for core project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -14,15 +14,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
+
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import path
+from . import views as ofertas_views
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('accounts.urls')),
-    path('', include('OfertaLaboral.urls')),
-    path('tinymce/', include('tinymce.urls')),
-    
+    path("", ofertas_views.inicio, name="inicio"),
+    #####################
+    path("listarOfertas/", ofertas_views.listar, name="listar"),
+    path("crearOferta/", ofertas_views.crear, name="crear"),
+    path("editarOferta/<int:id>/", ofertas_views.editar, name="editar"),
+    path("eliminarOferta/<int:id>/", ofertas_views.eliminar, name="eliminar"),
+    path("verOferta/<int:id>/", ofertas_views.ver, name="ver"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

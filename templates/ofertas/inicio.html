@@ -1,16 +1,19 @@
 {% extends 'layout/dashboard.html' %}
 
-{% block content %}
-  <h1>Hola, {{ nickname }}!!</h1>
 
-  {% if user.is_authenticated %}
-    <form method="post" action="{% url 'logout' %}">
-      {% csrf_token %}
-      <button class="btn btn-close btn-danger" type="submit">Logout</button>
-    </form>
-  {% else %}
-    <a href="{% url 'login' %}">Inicia Session</a>
-    <br />
-    <a href="{% url 'register' %}">Registrate</a>
-  {% endif %}
+{% block content %} 
+
+{% if user.is_authenticated %}
+      
+  <h1>Hola, {{ user.username }}!!</h1>
+  <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button class="btn btn-close btn-danger" type="submit">Logout</button>
+  </form>
+{% else %}
+  <a href="{% url 'login' %}">Inicia Session</a>
+  <br />
+  <a href="{% url 'register' %}">Registrate</a>
+{% endif %}
+
 {% endblock %}

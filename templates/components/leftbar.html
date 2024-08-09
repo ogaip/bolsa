@@ -2,7 +2,12 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="{% url 'inicio' %}" class="brand-link">
-    <img src="{% static 'assets/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8" />
+    <img
+      src="{% static 'assets/img/AdminLTELogo.png' %}"
+      alt="AdminLTE Logo"
+      class="brand-image img-circle elevation-3"
+      style="opacity: 0.8"
+    />
     <span class="brand-text font-weight-light"><b>B01$4</b></span>
   </a>
 
@@ -11,42 +16,53 @@
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="{{ MEDIA_URL }}{{ perfil.get.avatar }}" class="img-circle elevation-2" alt="User Image" />
+        <img
+          src="{{ MEDIA_URL }}{{ perfil.get.avatar }}"
+          class="img-circle elevation-2"
+          alt="User Image"
+        />
       </div>
       <div class="info">
-        <a href="#" class="d-block">{{ nickname }}</a>
+        <h4><a href="{% url 'perfil' %}" class="d-block">{{ nickname }}</a></h4>
       </div>
     </div>
 
     <!-- SidebarSearch Form -->
     <div class="form-inline">
       <div class="input-group" data-widget="sidebar-search">
-        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search" />
+        <input
+          class="form-control form-control-sidebar"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
         <div class="input-group-append">
-          <button class="btn btn-sidebar"><i class="fas fa-search fa-fw"></i></button>
+          <button class="btn btn-sidebar">
+            <i class="fas fa-search fa-fw"></i>
+          </button>
         </div>
       </div>
     </div>
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <ul
+        class="nav nav-pills nav-sidebar flex-column"
+        data-widget="treeview"
+        role="menu"
+        data-accordion="false"
+      >
         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
         <li class="nav-item">
           <a href="{% url 'inicio' %}" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-              Dashboard
-              <i class="right fas fa-angle-left"></i>
-            </p>
+            <p>Dashboard</p>
           </a>
         </li>
         <li class="nav-item menu-close">
           <a href="" class="nav-link">
             <i class="nav-icon fas fa-briefcase"></i>
-            <p>
-              Ofertas Laborales<i class="right fas fa-angle-left"></i>
-            </p>
+            <p>Ofertas Laborales<i class="right fas fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
@@ -91,11 +107,15 @@
           {% if user.is_authenticated %}
           <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
-            <button class="btn btn-close btn-danger" type="submit">Logout</button>
+            <button class="btn btn-close btn-danger" type="submit">
+              Logout
+            </button>
           </form>
-          
+
           {% else %}
-          <a class="btn btn-success text-white" href="{% url 'login' %}">Inicia Session</a>
+          <a class="btn btn-success text-white" href="{% url 'login' %}"
+            >Inicia Session</a
+          >
           {% endif %}
         </li>
         {% comment %}
@@ -122,9 +142,7 @@
             <li class="nav-item">
               <a href="../layout/fixed-sidebar-custom.html" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>
-                  Fixed Sidebar <small>+ Custom Area</small>
-                </p>
+                <p>Fixed Sidebar <small>+ Custom Area</small></p>
               </a>
             </li>
             <li class="nav-item">
@@ -155,8 +173,8 @@
               Logout
             </button>
           </form>
-        </li> {% endcomment %}
-        {% comment %}
+        </li>
+        {% endcomment %} {% comment %}
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-chart-pie"></i>
@@ -503,13 +521,19 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../examples/forgot-password-v2.html" class="nav-link">
+                  <a
+                    href="../examples/forgot-password-v2.html"
+                    class="nav-link"
+                  >
                     <i class="far fa-circle nav-icon"></i>
                     <p>Forgot Password v2</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../examples/recover-password-v2.html" class="nav-link">
+                  <a
+                    href="../examples/recover-password-v2.html"
+                    class="nav-link"
+                  >
                     <i class="far fa-circle nav-icon"></i>
                     <p>Recover Password v2</p>
                   </a>
@@ -679,7 +703,8 @@
             <i class="nav-icon far fa-circle text-warning"></i>
             <p>Warning</p>
           </a>
-        </li> {% endcomment %}
+        </li>
+        {% endcomment %}
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

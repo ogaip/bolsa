@@ -1,92 +1,110 @@
-{% extends 'layout/dashboard.html' %}
-{% block content %}
-  <!-- Main content -->
-  <section class="content">
-    {% for ofe in oferta %}
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">{{ ofe.titulo }}</h3>
+{% extends 'layout/dashboard.html' %} {% block content %}
+<!-- Main content -->
+<section class="content">
+  {% for ofe in oferta %}
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">{{ ofe.titulo }}</h3>
 
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse"><i class="fas fa-minus"></i></button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove"><i class="fas fa-times"></i></button>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
-              <div class="row">
-                <div class="col-12">
-                  <h4>Descripción:</h4>
-                  <div class="post">
-                    <!-- /.user-block -->
-                    {{ ofe.descripcion|safe }}
-                  </div>
-                </div>
-                <div class="col-12">
-                  <label class="form-label">Habilidades Requeridas:</label>
-                  <div class="post">{{ ofe.habilidades_requeridas|safe }}</div>
-                </div>
-                <div class="col-12">
-                  <label class="form-label">Beneficios:</label>
-                  <div class="post">{{ ofe.beneficios|safe }}</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
-              <h3 class="text-primary">Requisitos Laborales</h3>
-              <p>{{ ofe.requisitos_laborales|safe }}</p>
-
-              <br />
-              <div class="text-muted">
-                <p class="text-sm">
-                  Fecha Limite de Postulacion
-                  <b class="d-block">{{ ofe.fecha_limite_postulacion }}</b>
-                </p>
-                <p>
-                  <span class="username"><a href="#">{{ nickname }}</a></span>
-                  <span class="description">{{ ofe.fecha_creacion }}</span>
-                </p>
-              </div>
-
-              <h5 class="mt-5 text-muted">Adjuntos:</h5><i class="fa-solid fa-file-arrow-down"></i>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="" class="btn-link text-secondary">
-                    <i class="far fa-fw fa-file-word"></i>
-                    Propuesta.docx
-                  </a>
-                </li>
-                <li>
-                  <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-pdf"></i> UAT.pdf</a>
-                </li>
-                <li>
-                  <a href="" class="btn-link text-secondary">
-                    <i class="far fa-fw fa-envelope"></i>
-                    Email-from-flatbal.mln
-                  </a>
-                </li>
-                <li>
-                  <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-image"></i> Logo.png</a>
-                </li>
-                <li>
-                  <a href="" class="btn-link text-secondary">
-                    <i class="far fa-fw fa-file-word"></i>
-                    Contract-10_12_2014.docx
-                  </a>
-                </li>
-              </ul>
-              <div class="text-center mt-5 mb-3">
-                <a href="{% url 'editar' ofe.id %}" class="btn btn-sm btn-info">Editar</a>
-                <a href="{% url 'listar' %}" class="btn btn-sm btn-warning">Volver</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- /.card-body -->
+      <div class="card-tools">
+        <button
+          type="button"
+          class="btn btn-tool"
+          data-card-widget="collapse"
+          title="Collapse"
+        >
+          <i class="fas fa-minus"></i>
+        </button>
+        <button
+          type="button"
+          class="btn btn-tool"
+          data-card-widget="remove"
+          title="Remove"
+        >
+          <i class="fas fa-times"></i>
+        </button>
       </div>
-      <!-- /.card -->
-    {% endfor %}
-  </section>
-  <!-- /.content -->
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
+          <div class="row">
+            <div class="col-12">
+              <h4>Descripción:</h4>
+              <div class="post">
+                <!-- /.user-block -->
+                {{ ofe.descripcion|safe }}
+              </div>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Habilidades Requeridas:</label>
+              <div class="post">{{ ofe.habilidades_requeridas|safe }}</div>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Beneficios:</label>
+              <div class="post">{{ ofe.beneficios|safe }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
+          <h3 class="text-primary">Requisitos Laborales</h3>
+          <p>{{ ofe.requisitos_laborales|safe }}</p>
+
+          <br />
+          <div class="text-muted">
+            <p class="text-sm">
+              Fecha Limite de Postulacion
+              <b class="d-block">{{ ofe.fecha_limite_postulacion }}</b>
+            </p>
+          </div>
+
+          <h5 class="mt-5 text-muted">Adjuntos:</h5>
+          <i class="fa-solid fa-file-arrow-down"></i>
+          <ul class="list-unstyled">
+            <li>
+              <a href="" class="btn-link text-secondary">
+                <i class="far fa-fw fa-file-word"></i>
+                Propuesta.docx
+              </a>
+            </li>
+            <li>
+              <a href="" class="btn-link text-secondary"
+                ><i class="far fa-fw fa-file-pdf"></i> UAT.pdf</a
+              >
+            </li>
+            <li>
+              <a href="" class="btn-link text-secondary">
+                <i class="far fa-fw fa-envelope"></i>
+                Email-from-flatbal.mln
+              </a>
+            </li>
+            <li>
+              <a href="" class="btn-link text-secondary"
+                ><i class="far fa-fw fa-image"></i> Logo.png</a
+              >
+            </li>
+            <li>
+              <a href="" class="btn-link text-secondary">
+                <i class="far fa-fw fa-file-word"></i>
+                Contract-10_12_2014.docx
+              </a>
+            </li>
+          </ul>
+          <div class="text-center mt-5 mb-3">
+            <a href="{% url 'editar' ofe.id %}" class="btn btn-sm btn-info"
+              >Editar</a
+            >
+            <a href="{% url 'listar' %}" class="btn btn-sm btn-warning"
+              >Volver</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+  {% endfor %}
+</section>
+<!-- /.content -->
 {% endblock %}
